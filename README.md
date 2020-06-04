@@ -37,4 +37,4 @@ To check formatting itself, use `flake8 --max-line-length 88 *.py` after install
 
 The tools inside this repository are licensed under the MIT License (see the `LICENSE.md` file for details).
 
-The actual data retrieved from the OKAPI follow the [Opencaching.de data license](https://www.opencaching.de/articles.php?page=impressum#datalicense), which means you can use them under the terms of the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported (CC BY-NC-ND 3.0) license.
+The actual data retrieved from the OKAPI follows the [Opencaching.de data license](https://www.opencaching.de/articles.php?page=impressum&locale=EN), which means you can use them under the terms of the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Germany (CC BY-NC-ND 3.0 DE) license.
