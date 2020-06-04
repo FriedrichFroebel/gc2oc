@@ -37,8 +37,8 @@ CSV_HEADER = f"""# gc2oc.csv
 # {revision}).
 #
 # The data is provided under the terms of the Creative Commons
-# Attribution-NonCommercial-NoDerivs 3.0 Unported (CC BY-NC-ND 3.0) license. See
-# https://www.opencaching.de/articles.php?page=impressum#datalicense for more
+# Attribution-NonCommercial-NoDerivs 3.0 Germany (CC BY-NC-ND 3.0 DE) license. See
+# https://www.opencaching.de/articles.php?page=impressum#datalicense&locale=EN for more
 # information.
 #
 # File format: gcCode,ocCode
