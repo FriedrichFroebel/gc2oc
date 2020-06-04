@@ -10,6 +10,7 @@ Make sure you have
 
 * Python 3 (at least version 3.6)
 * [requests](https://github.com/requests/requests)
+* [GitPython](https://github.com/gitpython-developers/GitPython) (only when pushing changes)
 
 installed on your device.
 
@@ -24,6 +25,10 @@ installed on your device.
 
 1. Run `python3 -m perform_update` to update the database. This needs to be executed at least every 10 days, but should not be used with less than 5 minutes apart.
 2. Run `python3 -m export_csv` to create the CSV file with the mapping.
+
+### Uploading
+
+1. Run `python3 -m upload_changes` to push the changes to the Git repository.
 
 ## Development Tasks
 
