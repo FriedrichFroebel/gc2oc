@@ -30,6 +30,8 @@ installed on your device.
 
 1. Run `python3 -m upload_changes` to push the changes to the Git repository.
 
+Please note that this does not work with the first file commit at the moment. To actually add the mapping file(s) to your Git repository initially, please use the regular Git workflow.
+
 ## Development Tasks
 
 ### Code Style
