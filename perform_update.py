@@ -63,6 +63,9 @@ while True:
             if "gc_code" not in data:
                 continue
             gc_code = data["gc_code"]
+            # We might want to handle this in the future, but it should not do any real
+            # harm for now (at least within `cmanager`). There we are checking the
+            # other way round anyway before presenting the match itself.
             if not gc_code:
                 continue
 
