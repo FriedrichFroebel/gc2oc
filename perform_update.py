@@ -33,7 +33,17 @@ while True:
         + f"?since={revision}&consumer_key={configuration.OKAPI_KEY}"
     )
     data = requests.get(url).content
-    json_data = json.loads(data)
+    try:
+        json_data = json.loads(data)
+    except json.decoder.JSONDecodeError as error:
+        # If the content could not be parsed as JSON, print the content itself and
+        # stop by re-raising the exception afterwards.
+        print(f"Got JSON decode error when parsing JSON from {url}.")
+        print("Response content:")
+        print("=" * 80)
+        print(data)
+        print("=" * 80)
+        raise error
 
     # Retrieve the main variables.
     changelog = json_data["changelog"]

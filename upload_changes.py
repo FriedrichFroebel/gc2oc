@@ -58,6 +58,6 @@ repository.git.add(update=True)
 commit_message = f"Update to revision {revision}"
 repository.index.commit(commit_message)
 
-## Push the changes.
+# Push the changes.
 origin = repository.remote(name="origin")
 origin.push()
