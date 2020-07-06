@@ -30,7 +30,7 @@ installed on your device.
 
 1. Run `python3 -m upload_changes` to push the changes to the Git repository.
 
-Please note that this does not work with the first file commit at the moment. To actually add the mapping file(s) to your Git repository initially, please use the regular Git workflow.
+Please note that this performs a forced push of a re-initialized repository, overwriting the existing Git history. This is done for privacy reasons, as deactivated accounts with their cache data being deleted due to GDPR would still be mappable otherwise. For this reason you should make sure that the remote branch is not protected so it does not deny forced pushes (should be no problem with the default setup on GitHub).
 
 ## Development Tasks
 
