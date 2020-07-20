@@ -6,23 +6,22 @@ Load the data from a fulldump into a database file.
 """
 
 import json
-from pathlib import Path
 import sqlite3
 
 import configuration
 
 
 # Delete the existing database file.
-database_path = Path(configuration.DATABASE_FILE)
+database_path = configuration.DATABASE_FILE
 if database_path.exists():
     database_path.unlink()
 
 # Connect to the database.
-connection = sqlite3.connect(configuration.DATABASE_FILE)
+connection = sqlite3.connect(str(configuration.DATABASE_FILE))
 cursor = connection.cursor()
 
 # Create the database tables.
-structure_file = Path("templates", "structure.sql")
+structure_file = configuration.BASE_PATH_SCRIPTS / "templates" / "structure.sql"
 with open(structure_file, encoding="utf8") as infile:
     queries = infile.read().split(";")
     for query in queries:
@@ -34,7 +33,7 @@ with open(structure_file, encoding="utf8") as infile:
     connection.commit()
 
 # Load the list of data files from the fulldump.
-dump_path = Path(configuration.FULLDUMP_DIRECTORY)
+dump_path = configuration.FULLDUMP_DIRECTORY
 with open(dump_path / "index.json", encoding="utf8") as infile:
     json_data = json.load(infile)
     files = json_data["data_files"]

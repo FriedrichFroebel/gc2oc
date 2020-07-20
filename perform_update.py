@@ -14,7 +14,7 @@ import configuration
 
 
 # Connect to the database.
-connection = sqlite3.connect(configuration.DATABASE_FILE)
+connection = sqlite3.connect(str(configuration.DATABASE_FILE))
 cursor = connection.cursor()
 
 # Get the current revision.

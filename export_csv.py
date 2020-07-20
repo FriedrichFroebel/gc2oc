@@ -6,7 +6,6 @@ Save the data from the database inside a CSV file.
 """
 
 import gzip
-from pathlib import Path
 import shutil
 import sqlite3
 
@@ -14,7 +13,9 @@ import configuration
 
 
 # Connect to the database in read-only mode.
-connection = sqlite3.connect(f"file:{configuration.DATABASE_FILE}?mode=ro", uri=True)
+connection = sqlite3.connect(
+    f"file:{str(configuration.DATABASE_FILE)}?mode=ro", uri=True
+)
 
 # Retrieve the data from the database.
 revision, last_update_check = list(
@@ -44,14 +45,16 @@ CSV_HEADER = f"""# gc2oc.csv
 # File format: gcCode,ocCode
 """
 
-csv_path = Path("output", "gc2oc.csv")
+output_path = configuration.BASE_PATH_SCRIPTS / "output"
+
+csv_path = output_path / "gc2oc.csv"
 with open(csv_path, mode="w", encoding="utf8") as outfile:
     outfile.write(CSV_HEADER)
     for entry in mapping:
         oc_code, gc_code = entry
         outfile.write(f"{gc_code},{oc_code}\n")
 
-gzip_path = Path("output", "gc2oc.csv.gz")
+gzip_path = output_path / "gc2oc.csv.gz"
 with open(csv_path, mode="rb") as infile:
     with gzip.open(gzip_path, mode="wb") as outfile:
         shutil.copyfileobj(infile, outfile)

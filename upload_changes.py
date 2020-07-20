@@ -6,7 +6,6 @@ Upload the changes using Git. This will overwrite the existing Git history using
 forced push.
 """
 
-from pathlib import Path
 import shutil
 import sqlite3
 import sys
@@ -18,13 +17,14 @@ import configuration
 
 # File paths.
 filenames = ["gc2oc.csv", "gc2oc.csv.gz"]
-source_paths = [Path("output", filename) for filename in filenames]
-data_repository_path = Path("../gc2oc-data")
-destination_paths = [Path(data_repository_path, filename) for filename in filenames]
-git_config_path = data_repository_path / ".git" / "config"
+source_paths = [
+    configuration.BASE_PATH_SCRIPTS / "output" / filename for filename in filenames
+]
+destination_paths = [configuration.BASE_PATH_DATA / filename for filename in filenames]
+git_config_path = configuration.BASE_PATH_DATA / ".git" / "config"
 
 # Initialize Git object.
-repository = Repo(data_repository_path)
+repository = Repo(configuration.BASE_PATH_DATA)
 
 # Pull changes from remote to avoid conflicts.
 repository.remotes.origin.pull()
@@ -47,16 +47,16 @@ if not changed_files:
 
 # Delete the old Git directory, then re-initialize the repository and apply the old
 # configuration.
-shutil.rmtree(data_repository_path / ".git")
-Repo.init(data_repository_path)
+shutil.rmtree(configuration.BASE_PATH_DATA / ".git")
+Repo.init(configuration.BASE_PATH_DATA)
 with open(git_config_path, mode="w", encoding="utf8") as outfile:
     outfile.write(git_config)
 
 # Initialize the new Git object.
-repository = Repo(data_repository_path)
+repository = Repo(configuration.BASE_PATH_DATA)
 
 # Connect to the database.
-connection = sqlite3.connect(configuration.DATABASE_FILE)
+connection = sqlite3.connect(str(configuration.DATABASE_FILE))
 cursor = connection.cursor()
 
 # Get the current revision.
